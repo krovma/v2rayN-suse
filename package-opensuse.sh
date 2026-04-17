@@ -77,7 +77,9 @@ fi
 
 if [[ "$install_ok" -ne 1 ]]; then
   echo "Could not auto-install dependencies for '$ID'. Make sure these are available:"
-  echo "dotnet-sdk 8.x, curl, unzip, tar, rsync, rpm, rpmdevtools, rpm-build (on openSUSE branch)"
+  echo "curl, unzip, tar, rsync, rpm, rpmdevtools, rpm-build (on openSUSE branch)"
+  echo "dotnet-sdk 8.x should be manully installed from Microsoft package repository"
+  echo "see https://learn.microsoft.com/en-us/dotnet/core/install/linux-opensuse?tabs=dotnet8"
 fi
 
 # Root directory
@@ -455,7 +457,7 @@ build_for_arch() {
 
 Name:           v2rayN
 Version:        __VERSION__
-Release:        1%{?suse_version}
+Release:        1%{?dist}
 Summary:        v2rayN (Avalonia) GUI client for Linux (x86_64/aarch64)
 License:        GPL-3.0-only
 URL:            https://github.com/2dust/v2rayN
