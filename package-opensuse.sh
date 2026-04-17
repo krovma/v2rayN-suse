@@ -27,6 +27,8 @@ if [[ "$lowest" != "$MIN_KERNEL" ]]; then
 fi
 
 echo "[OK] Kernel $CURRENT_KERNEL verified."
+echo "[INFO] Please make sure you have dotnet-sdk 8.x installed."
+echo "[INFO] See https://learn.microsoft.com/en-us/dotnet/core/install/linux-opensuse?tabs=dotnet8"
 
 # Config & Parse arguments
 VERSION_ARG="${1:-}"     # Pass version number like 7.13.8, or leave empty
@@ -69,15 +71,22 @@ host_arch="$(uname -m)"
 [[ "$host_arch" == "aarch64" || "$host_arch" == "x86_64" ]] || { echo "Only supports aarch64 / x86_64"; exit 1; }
 
 install_ok=0
-
 if command -v zypper >/dev/null 2>&1; then
   sudo zypper -n install rpm-build rpmdevtools curl unzip tar jq rsync \
     && install_ok=1
 fi
 
+dotnet_ok=0
+if command -v dotnet >dev/null 2>&1; then
+  dotnet_ok=1
+fi
+
 if [[ "$install_ok" -ne 1 ]]; then
   echo "Could not auto-install dependencies for '$ID'. Make sure these are available:"
   echo "curl, unzip, tar, rsync, rpm, rpmdevtools, rpm-build (on openSUSE branch)"
+fi
+
+if [[ "$dotnet_ok" -ne 1]]; then
   echo "dotnet-sdk 8.x should be manully installed from Microsoft package repository"
   echo "see https://learn.microsoft.com/en-us/dotnet/core/install/linux-opensuse?tabs=dotnet8"
 fi
