@@ -465,7 +465,7 @@ BugURL:         https://github.com/2dust/v2rayN/issues
 ExclusiveArch:  aarch64 x86_64
 Source0:        __PKGROOT__.tar.gz
 
-# Runtime dependencies (Avalonia / X11 / Fonts / GL) — openSUSE package names
+# Runtime dependencies (Avalonia / X11 / Fonts / GL) — w/ openSUSE package names
 Requires:       libcairo2
 Requires:       libpango-1_0-0
 Requires:       (libopenssl3 or libopenssl1_1)
