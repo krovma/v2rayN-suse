@@ -77,7 +77,7 @@ if command -v zypper >/dev/null 2>&1; then
 fi
 
 dotnet_ok=0
-if command -v dotnet >dev/null 2>&1; then
+if command -v dotnet >/dev/null 2>&1; then
   dotnet_ok=1
 fi
 
@@ -86,7 +86,7 @@ if [[ "$install_ok" -ne 1 ]]; then
   echo "curl, unzip, tar, rsync, rpm, rpmdevtools, rpm-build (on openSUSE branch)"
 fi
 
-if [[ "$dotnet_ok" -ne 1]]; then
+if [[ "$dotnet_ok" -ne 1 ]]; then
   echo "dotnet-sdk 8.x should be manully installed from Microsoft package repository"
   echo "see https://learn.microsoft.com/en-us/dotnet/core/install/linux-opensuse?tabs=dotnet8"
 fi
